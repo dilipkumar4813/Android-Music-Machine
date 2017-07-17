@@ -3,9 +3,8 @@ package iamdilipkumar.com.musicmachine;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
-import android.support.annotation.IntDef;
+import android.os.Message;
 import android.support.annotation.Nullable;
-import android.util.Log;
 
 /**
  * Created on 16/07/17.
@@ -17,28 +16,31 @@ import android.util.Log;
 public class DownloadService extends Service {
 
     private static final String TAG = "DownloadService";
+    private DownloadHandler mHandler;
 
     @Override
-    public int onStartCommand(Intent intent,int flags, int startId) {
+    public void onCreate() {
+        DownloadThread thread = new DownloadThread();
+        thread.setName("DownloadSongs");
+        thread.start();
+
+        while (mHandler == null) {
+            mHandler = thread.mHandler;
+            mHandler.setService(this);
+        }
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
         String song = intent.getStringExtra(MainActivity.SONG_NAME);
-        downloadSong(song);
+
+        Message message = Message.obtain();
+        message.obj = song;
+        message.arg1 = startId;
+        mHandler.sendMessage(message);
+
         return Service.START_REDELIVER_INTENT;
     }
-
-    private void downloadSong(String song) {
-        long endTime = System.currentTimeMillis() + 10 * 1000;
-
-        while (System.currentTimeMillis() < endTime) {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-
-        Log.d(TAG, song + " downloaded");
-    }
-
 
     @Nullable
     @Override

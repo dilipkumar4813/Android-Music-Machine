@@ -10,7 +10,7 @@ import android.util.Log;
  * @version 1.0
  */
 
-public class DownloadTask extends Thread {
+public class DownloadThread extends Thread {
 
     public DownloadHandler mHandler;
 
