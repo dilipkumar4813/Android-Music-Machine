@@ -28,15 +28,13 @@ public class ActivityHandler extends Handler {
             case 0:
                 message.arg1 = 0;
 
-                if (message.arg2 == 1) {
-                    mMainActivity.changePlayButtonText("Pause");
-                } else {
+                mMainActivity.changePlayButtonText("Pause");
+                if (message.arg2 != 1) {
                     try {
                         msg.replyTo.send(message);
                     } catch (RemoteException e) {
                         e.printStackTrace();
                     }
-                    mMainActivity.changePlayButtonText("Pause");
                 }
                 break;
             case 1:
@@ -44,15 +42,15 @@ public class ActivityHandler extends Handler {
                 // Change to play button
                 message.arg1 = 1;
 
-                if (msg.arg2 == 1) {
-                    mMainActivity.changePlayButtonText("Play");
-                } else {
+                mMainActivity.changePlayButtonText("Play");
+
+                if (msg.arg2 != 1) {
                     try {
                         msg.replyTo.send(message);
                     } catch (RemoteException e) {
                         e.printStackTrace();
                     }
-                    mMainActivity.changePlayButtonText("Play");
+
                 }
                 break;
         }
