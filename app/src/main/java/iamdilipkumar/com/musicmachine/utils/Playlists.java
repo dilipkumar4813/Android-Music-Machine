@@ -1,4 +1,4 @@
-package iamdilipkumar.com.musicmachine;
+package iamdilipkumar.com.musicmachine.utils;
 
 /**
  * Created on 16/07/17.

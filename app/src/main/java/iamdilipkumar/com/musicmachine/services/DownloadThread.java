@@ -1,7 +1,8 @@
-package iamdilipkumar.com.musicmachine;
+package iamdilipkumar.com.musicmachine.services;
 
 import android.os.Looper;
-import android.util.Log;
+
+import iamdilipkumar.com.musicmachine.services.DownloadHandler;
 
 /**
  * Created on 16/07/17.

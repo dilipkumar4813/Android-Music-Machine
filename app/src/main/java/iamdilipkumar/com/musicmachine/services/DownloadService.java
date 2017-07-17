@@ -1,10 +1,12 @@
-package iamdilipkumar.com.musicmachine;
+package iamdilipkumar.com.musicmachine.services;
 
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 import android.os.Message;
 import android.support.annotation.Nullable;
+
+import iamdilipkumar.com.musicmachine.MainActivity;
 
 /**
  * Created on 16/07/17.
